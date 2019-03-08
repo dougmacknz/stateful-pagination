@@ -1,8 +1,13 @@
-import React from "react";
+import * as React from "react";
 import PropTypes from "prop-types";
 
-const Pagination = ({ itemsPerPage }) => {
-  return <div>Pagination component. Example prop: {itemsPerPage}</div>;
+const Pagination = ({ itemsPerPage, children }) => {
+  const [currentPage, setCurrentPage] = React.useState(1);
+
+  const offset = (currentPage - 1) * itemsPerPage;
+  const total = offset + itemsPerPage;
+
+  return children.slice(offset, total);
 };
 
 Pagination.propTypes = {
