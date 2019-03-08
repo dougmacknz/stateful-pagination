@@ -12,6 +12,8 @@ const Pagination = ({ itemsPerPage, children }) => {
       <PaginationButtons
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
+        itemLength={children.length}
+        itemsPerPage={itemsPerPage}
       />
     </>
   );
@@ -33,11 +35,31 @@ const PaginationItems = ({ currentPage, itemsPerPage, children }) => {
 /**
  * Displays the pagination buttons
  */
-const PaginationButtons = ({ currentPage, setCurrentPage }) => {
+const PaginationButtons = ({
+  currentPage,
+  setCurrentPage,
+  itemsPerPage,
+  itemLength
+}) => {
+  const prevOffset = (currentPage - 1) * itemsPerPage;
+  const nextOffset = currentPage * itemsPerPage;
+  const prevDisabled = prevOffset <= 0 ? "disabled" : "";
+  const nextDisabled = nextOffset >= itemLength ? "disabled" : "";
+
   return (
     <>
-      <button onClick={() => setCurrentPage(currentPage - 1)}>Prev</button>
-      <button onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
+      <button
+        onClick={() => setCurrentPage(currentPage - 1)}
+        disabled={prevDisabled}
+      >
+        Prev
+      </button>
+      <button
+        onClick={() => setCurrentPage(currentPage + 1)}
+        disabled={nextDisabled}
+      >
+        Next
+      </button>
     </>
   );
 };
