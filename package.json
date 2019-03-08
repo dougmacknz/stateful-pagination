@@ -4,6 +4,7 @@
   "description": "React pagination component with built in management of items.",
   "main": "index.js",
   "scripts": {
+    "storybook": "start-storybook -p 9001 -c .storybook",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,5 +23,14 @@
   "bugs": {
     "url": "https://github.com/dougmacknz/react-pagination-items/issues"
   },
-  "homepage": "https://github.com/dougmacknz/react-pagination-items#readme"
+  "homepage": "https://github.com/dougmacknz/react-pagination-items#readme",
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@storybook/react": "^5.0.0",
+    "babel-loader": "^8.0.5"
+  },
+  "peerDependencies": {
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
+  }
 }
