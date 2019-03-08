@@ -1,0 +1,26 @@
+{
+  "name": "react-pagination-items",
+  "version": "1.0.0",
+  "description": "React pagination component with built in management of items.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dougmacknz/react-pagination-items.git"
+  },
+  "keywords": [
+    "react",
+    "pagination"
+  ],
+  "author": {
+    "name": "Doug MacKenzie",
+    "url": "http://dougmack.nz/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dougmacknz/react-pagination-items/issues"
+  },
+  "homepage": "https://github.com/dougmacknz/react-pagination-items#readme"
+}
