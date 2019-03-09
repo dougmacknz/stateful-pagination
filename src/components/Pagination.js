@@ -48,39 +48,80 @@ const PaginationButtons = ({
   const pageCount = itemLength / itemsPerPage;
 
   return (
-    <>
-      <EndButton
-        disabled={prevDisabled}
-        onClick={() => setCurrentPage(currentPage - 1)}
-      >
-        Prev
-      </EndButton>
+    <nav role="navigation" aria-label="Pagination Navigation">
+      <ul>
+        <li>
+          <EndButton
+            disabled={prevDisabled}
+            targetPage={currentPage - 1}
+            onClick={() => setCurrentPage(currentPage - 1)}
+          >
+            Prev
+          </EndButton>
+        </li>
 
-      <NumberedButtons pageCount={pageCount} setCurrentPage={setCurrentPage} />
+        <li>
+          <NumberedButtons
+            pageCount={pageCount}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        </li>
 
-      <EndButton
-        disabled={nextDisabled}
-        onClick={() => setCurrentPage(currentPage + 1)}
-      >
-        Next
-      </EndButton>
-    </>
+        <li>
+          <EndButton
+            disabled={nextDisabled}
+            targetPage={currentPage + 1}
+            onClick={() => setCurrentPage(currentPage + 1)}
+          >
+            Next
+          </EndButton>
+        </li>
+      </ul>
+    </nav>
   );
 };
 
-const EndButton = ({ disabled, onClick, children }) => {
+const EndButton = ({ disabled, targetPage, onClick, children }) => {
   return (
-    <button onClick={onClick} disabled={disabled}>
+    <a
+      href="#"
+      onClick={preventDefault(() => {
+        if (disabled) return;
+        onClick();
+      })}
+      disabled={disabled}
+      aria-label={`Goto Page ${targetPage}`}
+    >
       {children}
-    </button>
+    </a>
   );
 };
 
-const NumberedButtons = ({ pageCount, setCurrentPage }) => {
+const NumberedButtons = ({ pageCount, currentPage, setCurrentPage }) => {
   return [...Array(pageCount)].map((derp, index) => {
     const pageNum = index + 1;
-    return <button onClick={() => setCurrentPage(pageNum)}>{pageNum}</button>;
+    const isSelectedPage = pageNum === currentPage;
+    return (
+      <a
+        key={index}
+        href="#"
+        className={isSelectedPage ? "selected" : undefined}
+        onClick={preventDefault(() => setCurrentPage(pageNum))}
+        aria-label={`Goto Page ${pageNum}`}
+        aria-current={isSelectedPage ? "selected" : undefined}
+      >
+        {pageNum}
+      </a>
+    );
   });
+};
+
+const preventDefault = theEvent => {
+  return event => {
+    event.preventDefault();
+    theEvent.call();
+  };
 };
 
 export default Pagination;
