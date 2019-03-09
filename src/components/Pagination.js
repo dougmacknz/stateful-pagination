@@ -103,16 +103,18 @@ const NumberedButtons = ({ pageCount, currentPage, setCurrentPage }) => {
     const pageNum = index + 1;
     const isSelectedPage = pageNum === currentPage;
     return (
-      <a
-        key={index}
-        href="#"
-        className={isSelectedPage ? "selected" : undefined}
-        onClick={preventDefault(() => setCurrentPage(pageNum))}
-        aria-label={`Goto Page ${pageNum}`}
-        aria-current={isSelectedPage ? "selected" : undefined}
-      >
-        {pageNum}
-      </a>
+      <li>
+        <a
+          key={index}
+          href="#"
+          className={isSelectedPage ? "selected" : undefined}
+          onClick={preventDefault(() => setCurrentPage(pageNum))}
+          aria-label={`Goto Page ${pageNum}`}
+          aria-current={isSelectedPage ? "selected" : undefined}
+        >
+          {pageNum}
+        </a>
+      </li>
     );
   });
 };
