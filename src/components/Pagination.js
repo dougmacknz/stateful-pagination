@@ -1,5 +1,6 @@
 import * as React from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 
 const Pagination = ({ itemsPerPage, children }) => {
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -49,34 +50,28 @@ const PaginationButtons = ({
 
   return (
     <nav role="navigation" aria-label="Pagination Navigation">
-      <ul>
-        <li>
-          <EndButton
-            disabled={prevDisabled}
-            targetPage={currentPage - 1}
-            onClick={() => setCurrentPage(currentPage - 1)}
-          >
-            Prev
-          </EndButton>
-        </li>
+      <ul className="pagination">
+        <EndButton
+          disabled={prevDisabled}
+          targetPage={currentPage - 1}
+          onClick={() => setCurrentPage(currentPage - 1)}
+        >
+          Prev
+        </EndButton>
 
-        <li>
-          <NumberedButtons
-            pageCount={pageCount}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
-        </li>
+        <NumberedButtons
+          pageCount={pageCount}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
 
-        <li>
-          <EndButton
-            disabled={nextDisabled}
-            targetPage={currentPage + 1}
-            onClick={() => setCurrentPage(currentPage + 1)}
-          >
-            Next
-          </EndButton>
-        </li>
+        <EndButton
+          disabled={nextDisabled}
+          targetPage={currentPage + 1}
+          onClick={() => setCurrentPage(currentPage + 1)}
+        >
+          Next
+        </EndButton>
       </ul>
     </nav>
   );
@@ -84,18 +79,20 @@ const PaginationButtons = ({
 
 const EndButton = ({ disabled, targetPage, onClick, children }) => {
   return (
-    <a
-      href="#"
-      onClick={preventDefault(() => {
-        if (disabled) return;
-        onClick();
-      })}
-      disabled={disabled ? "disabled" : ""}
-      aria-label={`Goto Page ${targetPage}`}
-      aria-disabled={disabled}
-    >
-      {children}
-    </a>
+    <li className={classNames({ "page-item": true, disabled: disabled })}>
+      <a
+        href="#"
+        className="page-link"
+        onClick={preventDefault(() => {
+          if (disabled) return;
+          onClick();
+        })}
+        aria-label={`Goto Page ${targetPage}`}
+        aria-disabled={disabled}
+      >
+        {children}
+      </a>
+    </li>
   );
 };
 
@@ -104,11 +101,16 @@ const NumberedButtons = ({ pageCount, currentPage, setCurrentPage }) => {
     const pageNum = index + 1;
     const isSelectedPage = pageNum === currentPage;
     return (
-      <li>
+      <li
+        className={classNames({
+          "page-item": true,
+          active: isSelectedPage
+        })}
+      >
         <a
           key={index}
           href="#"
-          className={isSelectedPage ? "selected" : undefined}
+          className="page-link"
           onClick={preventDefault(() => setCurrentPage(pageNum))}
           aria-label={`Goto Page ${pageNum}`}
           aria-current={isSelectedPage ? "selected" : undefined}
