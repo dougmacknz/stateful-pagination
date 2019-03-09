@@ -43,8 +43,8 @@ const PaginationButtons = ({
 }) => {
   const prevOffset = (currentPage - 1) * itemsPerPage;
   const nextOffset = currentPage * itemsPerPage;
-  const prevDisabled = prevOffset <= 0 ? "disabled" : "";
-  const nextDisabled = nextOffset >= itemLength ? "disabled" : "";
+  const prevDisabled = prevOffset <= 0;
+  const nextDisabled = nextOffset >= itemLength;
   const pageCount = itemLength / itemsPerPage;
 
   return (
@@ -90,8 +90,9 @@ const EndButton = ({ disabled, targetPage, onClick, children }) => {
         if (disabled) return;
         onClick();
       })}
-      disabled={disabled}
+      disabled={disabled ? "disabled" : ""}
       aria-label={`Goto Page ${targetPage}`}
+      aria-disabled={disabled}
     >
       {children}
     </a>
