@@ -1,5 +1,5 @@
 {
-  "name": "react-pagination-items",
+  "name": "stateful-pagination",
   "version": "1.0.0",
   "description": "React pagination component with built in management of items.",
   "main": "index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dougmacknz/react-pagination-items.git"
+    "url": "git+https://github.com/dougmacknz/stateful-pagination.git"
   },
   "keywords": [
     "react",
@@ -21,9 +21,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dougmacknz/react-pagination-items/issues"
+    "url": "https://github.com/dougmacknz/stateful-pagination/issues"
   },
-  "homepage": "https://github.com/dougmacknz/react-pagination-items#readme",
+  "homepage": "https://github.com/dougmacknz/stateful-pagination#readme",
   "devDependencies": {
     "@babel/core": "^7.3.4",
     "@storybook/react": "^5.0.0",
