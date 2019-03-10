@@ -14,3 +14,7 @@
 [npm-badge-png]: https://nodei.co/npm/stateful-pagination.png?downloads=true&stars=true
 [license-image]: http://img.shields.io/npm/l/stateful-pagination.svg
 [license-url]: LICENSE
+
+## Demo
+
+https://dougmacknz.github.io/stateful-pagination/

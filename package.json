@@ -4,8 +4,9 @@
   "description": "React pagination component with built in management of items.",
   "main": "index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy-storybook": "storybook-to-ghpages"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
   "devDependencies": {
     "@babel/core": "^7.3.4",
     "@storybook/react": "^5.0.0",
+    "@storybook/storybook-deployer": "^2.8.1",
     "babel-loader": "^8.0.5"
   },
   "peerDependencies": {
