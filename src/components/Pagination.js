@@ -2,12 +2,16 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 
-const Pagination = ({ itemsPerPage, children }) => {
+const Pagination = ({ itemsPerPage, containerClassName, children }) => {
   const [currentPage, setCurrentPage] = React.useState(1);
 
   return (
     <>
-      <PaginationItems currentPage={currentPage} itemsPerPage={itemsPerPage}>
+      <PaginationItems
+        currentPage={currentPage}
+        itemsPerPage={itemsPerPage}
+        containerClassName={containerClassName}
+      >
         {children}
       </PaginationItems>
       <PaginationButtons
@@ -27,10 +31,16 @@ Pagination.propTypes = {
 /**
  * Displays the current page of items
  */
-const PaginationItems = ({ currentPage, itemsPerPage, children }) => {
+const PaginationItems = ({
+  currentPage,
+  itemsPerPage,
+  containerClassName,
+  children
+}) => {
   const offset = (currentPage - 1) * itemsPerPage;
   const total = offset + itemsPerPage;
-  return children.slice(offset, total);
+  const content = children.slice(offset, total);
+  return <div className={containerClassName}>{content}</div>;
 };
 
 /**
@@ -56,7 +66,7 @@ const PaginationButtons = ({
           targetPage={currentPage - 1}
           onClick={() => setCurrentPage(currentPage - 1)}
         >
-          Prev
+          &lsaquo;
         </EndButton>
 
         <NumberedButtons
@@ -70,7 +80,7 @@ const PaginationButtons = ({
           targetPage={currentPage + 1}
           onClick={() => setCurrentPage(currentPage + 1)}
         >
-          Next
+          &rsaquo;
         </EndButton>
       </ul>
     </nav>
