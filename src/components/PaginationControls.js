@@ -11,7 +11,9 @@ const PaginationControls = ({
   currentPage,
   setCurrentPage,
   itemsPerPage,
-  itemLength
+  itemLength,
+  prevLabel,
+  nextLabel
 }) => {
   const prevOffset = (currentPage - 1) * itemsPerPage;
   const nextOffset = currentPage * itemsPerPage;
@@ -31,7 +33,7 @@ const PaginationControls = ({
           targetPage={currentPage - 1}
           onClick={() => setCurrentPage(currentPage - 1)}
         >
-          &lsaquo;
+          {prevLabel}
         </EndButton>
 
         <NumberedButtons
@@ -45,11 +47,21 @@ const PaginationControls = ({
           targetPage={currentPage + 1}
           onClick={() => setCurrentPage(currentPage + 1)}
         >
-          &rsaquo;
+          {nextLabel}
         </EndButton>
       </ul>
     </nav>
   );
+};
+
+PaginationControls.defaultProps = {
+  prevLabel: "Previous",
+  nextLabel: "Next"
+};
+
+PaginationControls.propTypes = {
+  prevLabel: PropTypes.node,
+  nextLabel: PropTypes.node
 };
 
 const EndButton = ({ disabled, targetPage, onClick, children }) => {
