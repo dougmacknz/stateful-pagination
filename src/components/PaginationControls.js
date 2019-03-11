@@ -13,7 +13,8 @@ const PaginationControls = ({
   itemsPerPage,
   itemLength,
   prevLabel,
-  nextLabel
+  nextLabel,
+  controlClassName
 }) => {
   const prevOffset = (currentPage - 1) * itemsPerPage;
   const nextOffset = currentPage * itemsPerPage;
@@ -31,6 +32,7 @@ const PaginationControls = ({
         <EndButton
           disabled={prevDisabled}
           targetPage={currentPage - 1}
+          controlClassName={controlClassName}
           onClick={() => setCurrentPage(currentPage - 1)}
         >
           {prevLabel}
@@ -40,11 +42,13 @@ const PaginationControls = ({
           pageCount={pageCount}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
+          controlClassName={controlClassName}
         />
 
         <EndButton
           disabled={nextDisabled}
           targetPage={currentPage + 1}
+          controlClassName={controlClassName}
           onClick={() => setCurrentPage(currentPage + 1)}
         >
           {nextLabel}
@@ -56,20 +60,28 @@ const PaginationControls = ({
 
 PaginationControls.defaultProps = {
   prevLabel: "Previous",
-  nextLabel: "Next"
+  nextLabel: "Next",
+  controlClassName: "page-link"
 };
 
 PaginationControls.propTypes = {
   prevLabel: PropTypes.node,
-  nextLabel: PropTypes.node
+  nextLabel: PropTypes.node,
+  controlClassName: PropTypes.string
 };
 
-const EndButton = ({ disabled, targetPage, onClick, children }) => {
+const EndButton = ({
+  disabled,
+  targetPage,
+  onClick,
+  controlClassName,
+  children
+}) => {
   return (
     <li className={classNames({ "page-item": true, disabled: disabled })}>
       <a
         href="#"
-        className="page-link"
+        className={controlClassName}
         onClick={preventDefault(() => {
           if (disabled) return;
           onClick();
@@ -83,7 +95,12 @@ const EndButton = ({ disabled, targetPage, onClick, children }) => {
   );
 };
 
-const NumberedButtons = ({ pageCount, currentPage, setCurrentPage }) => {
+const NumberedButtons = ({
+  pageCount,
+  currentPage,
+  setCurrentPage,
+  controlClassName
+}) => {
   return [...Array(pageCount)].map((derp, index) => {
     const pageNum = index + 1;
     const isSelectedPage = pageNum === currentPage;
@@ -97,7 +114,7 @@ const NumberedButtons = ({ pageCount, currentPage, setCurrentPage }) => {
       >
         <a
           href="#"
-          className="page-link"
+          className={controlClassName}
           onClick={preventDefault(() => setCurrentPage(pageNum))}
           aria-label={`Goto Page ${pageNum}`}
           aria-current={isSelectedPage ? "selected" : undefined}

@@ -71,7 +71,8 @@ There's a lot of pagination components out there for React. However I haven't se
 
 ### `<PaginationButtons>`
 
-| Name        | Type   | Required | Default    | Description                            |
-| ----------- | ------ | :------: | ---------- | -------------------------------------- |
-| `prevLabel` | `node` |          | `Previous` | Custom label for the 'previous' button |
-| `nextLabel` | `node` |          | `Next`     | Custom label for the 'next' button     |
+| Name               | Type     | Required | Default     | Description                            |
+| ------------------ | -------- | :------: | ----------- | -------------------------------------- |
+| `prevLabel`        | `node`   |          | `Previous`  | Custom label for the 'previous' button |
+| `nextLabel`        | `node`   |          | `Next`      | Custom label for the 'next' button     |
+| `controlClassName` | `string` |          | `page-link` | Custom class for the pagination links  |
