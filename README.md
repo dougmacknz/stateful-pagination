@@ -32,7 +32,11 @@ npm install stateful-pagination --save
 Import:
 
 ```jsx
-import { PaginationItems, PagiationControls } from "stateful-pagination";
+import {
+  Pagination,
+  PaginationItems,
+  PagiationControls
+} from "stateful-pagination";
 ```
 
 ## Why another pagination component?
@@ -41,6 +45,12 @@ There's a lot of pagination components out there for React. However I haven't se
 
 ## Props
 
+### `<Pagination>`
+
+| Name           | Type     | Required | Description                                                       |
+| -------------- | -------- | :------: | ----------------------------------------------------------------- |
+| `itemsPerPage` | `number` |    Y     | The amount of parent elements that will be displayed on each page |
+
 ### `<PaginationItems>`
 
 | Name                 | Type     | Required | Description                         |
@@ -48,7 +58,3 @@ There's a lot of pagination components out there for React. However I haven't se
 | `containerClassName` | `string` |          | Custom class name for the container |
 
 ### `<PaginationButtons>`
-
-| Name           | Type     | Required | Description                                                       |
-| -------------- | -------- | :------: | ----------------------------------------------------------------- |
-| `itemsPerPage` | `number` |    Y     | The amount of parent elements that will be displayed on each page |

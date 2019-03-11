@@ -32,8 +32,10 @@
     "babel-loader": "^8.0.5"
   },
   "peerDependencies": {
+    "classnames": "^2.2.5",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "classnames": "^2.2.5"
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1"
   }
 }
