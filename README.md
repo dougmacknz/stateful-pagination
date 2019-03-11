@@ -29,14 +29,26 @@ Install the package:
 npm install stateful-pagination --save
 ```
 
-Import:
+Usage:
 
 ```jsx
 import {
   Pagination,
   PaginationItems,
-  PagiationControls
+  PaginationControls
 } from "stateful-pagination";
+```
+
+```jsx
+<Pagination itemsPerPage={2}>
+  <PaginationItems>
+    <div>Item 1</div>
+    <div>Item 2</div>
+    <div>Item 3</div>
+    <div>Item 4</div>
+  </PaginationItems>
+  <PaginationControls />
+</Pagination>
 ```
 
 ## Why another pagination component?
