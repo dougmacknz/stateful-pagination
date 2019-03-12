@@ -11,15 +11,14 @@ storiesOf("Pagination", module).add("basic example", () => (
       crossOrigin="anonymous"
     />
 
-    <Pagination itemsPerPage={2}>
+    <Pagination itemsPerPage={5}>
       <div style={{ maxWidth: "400px" }}>
         <PaginationItems containerClassName="list-group">
-          <div className="list-group-item">Item 1</div>
-          <div className="list-group-item">Item 2</div>
-          <div className="list-group-item">Item 3</div>
-          <div className="list-group-item">Item 4</div>
-          <div className="list-group-item">Item 5</div>
-          <div className="list-group-item">Item 6</div>
+          {[...Array(150)].map((herp, index) => (
+            <div key={index} className="list-group-item">
+              Item {index + 1}
+            </div>
+          ))}
         </PaginationItems>
       </div>
       <PaginationControls />

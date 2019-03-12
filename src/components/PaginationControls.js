@@ -70,6 +70,9 @@ PaginationControls.propTypes = {
   controlClassName: PropTypes.string
 };
 
+/**
+ * 'Previous' or 'Next' button
+ */
 const EndButton = ({
   disabled,
   targetPage,
@@ -95,14 +98,34 @@ const EndButton = ({
   );
 };
 
+/**
+ * Numbered page buttons
+ */
 const NumberedButtons = ({
   pageCount,
   currentPage,
   setCurrentPage,
   controlClassName
 }) => {
-  return [...Array(pageCount)].map((derp, index) => {
-    const pageNum = index + 1;
+  let startPage, endPage;
+  if (pageCount <= 10) {
+    startPage = 1;
+    endPage = pageCount;
+  } else {
+    if (currentPage <= 6) {
+      startPage = 1;
+      endPage = 10;
+    } else if (currentPage + 4 >= pageCount) {
+      startPage = pageCount - 9;
+      endPage = pageCount;
+    } else {
+      startPage = currentPage - 5;
+      endPage = currentPage + 4;
+    }
+  }
+
+  return [...Array(endPage + 1 - startPage).keys()].map(index => {
+    const pageNum = startPage + index;
     const isSelectedPage = pageNum === currentPage;
     return (
       <li
