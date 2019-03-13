@@ -14,7 +14,8 @@ const PaginationControls = ({
   itemLength,
   prevLabel,
   nextLabel,
-  controlClassName
+  controlClassName,
+  maxButtons
 }) => {
   const prevOffset = (currentPage - 1) * itemsPerPage;
   const nextOffset = currentPage * itemsPerPage;
@@ -43,6 +44,7 @@ const PaginationControls = ({
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
           controlClassName={controlClassName}
+          maxButtons={maxButtons}
         />
 
         <EndButton
@@ -61,7 +63,8 @@ const PaginationControls = ({
 PaginationControls.defaultProps = {
   prevLabel: "Previous",
   nextLabel: "Next",
-  controlClassName: "page-link"
+  controlClassName: "page-link",
+  maxButtons: 5
 };
 
 PaginationControls.propTypes = {
@@ -105,22 +108,27 @@ const NumberedButtons = ({
   pageCount,
   currentPage,
   setCurrentPage,
-  controlClassName
+  controlClassName,
+  maxButtons
 }) => {
+  const breakPoint = Math.floor(maxButtons / 2) + 1;
+  const breakPoint2 = Math.ceil(maxButtons / 2) - 1;
+  const breakPoint3 = maxButtons - 1;
   let startPage, endPage;
-  if (pageCount <= 10) {
+
+  if (pageCount <= maxButtons) {
     startPage = 1;
     endPage = pageCount;
   } else {
-    if (currentPage <= 6) {
+    if (currentPage <= breakPoint) {
       startPage = 1;
-      endPage = 10;
-    } else if (currentPage + 4 >= pageCount) {
-      startPage = pageCount - 9;
+      endPage = maxButtons;
+    } else if (currentPage + breakPoint2 >= pageCount) {
+      startPage = pageCount - breakPoint3;
       endPage = pageCount;
     } else {
-      startPage = currentPage - 5;
-      endPage = currentPage + 4;
+      startPage = currentPage - Math.floor(maxButtons / 2);
+      endPage = currentPage + breakPoint2;
     }
   }
 
