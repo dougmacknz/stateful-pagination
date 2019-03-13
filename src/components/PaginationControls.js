@@ -15,7 +15,8 @@ const PaginationControls = ({
   prevLabel,
   nextLabel,
   controlClassName,
-  maxButtons
+  maxButtons,
+  onPageChange
 }) => {
   const prevOffset = (currentPage - 1) * itemsPerPage;
   const nextOffset = currentPage * itemsPerPage;
@@ -34,7 +35,9 @@ const PaginationControls = ({
           disabled={prevDisabled}
           targetPage={currentPage - 1}
           controlClassName={controlClassName}
-          onClick={() => setCurrentPage(currentPage - 1)}
+          onClick={() =>
+            onControlClick(currentPage - 1, setCurrentPage, onPageChange)
+          }
         >
           {prevLabel}
         </EndButton>
@@ -45,13 +48,16 @@ const PaginationControls = ({
           setCurrentPage={setCurrentPage}
           controlClassName={controlClassName}
           maxButtons={maxButtons}
+          onPageChange={onPageChange}
         />
 
         <EndButton
           disabled={nextDisabled}
           targetPage={currentPage + 1}
           controlClassName={controlClassName}
-          onClick={() => setCurrentPage(currentPage + 1)}
+          onClick={() =>
+            onControlClick(currentPage + 1, setCurrentPage, onPageChange)
+          }
         >
           {nextLabel}
         </EndButton>
@@ -109,7 +115,8 @@ const NumberedButtons = ({
   currentPage,
   setCurrentPage,
   controlClassName,
-  maxButtons
+  maxButtons,
+  onPageChange
 }) => {
   const breakPoint = Math.floor(maxButtons / 2) + 1;
   const breakPoint2 = Math.ceil(maxButtons / 2) - 1;
@@ -146,7 +153,9 @@ const NumberedButtons = ({
         <a
           href="#"
           className={controlClassName}
-          onClick={preventDefault(() => setCurrentPage(pageNum))}
+          onClick={preventDefault(() =>
+            onControlClick(pageNum, setCurrentPage, onPageChange)
+          )}
           aria-label={`Goto Page ${pageNum}`}
           aria-current={isSelectedPage ? "selected" : undefined}
         >
@@ -155,6 +164,19 @@ const NumberedButtons = ({
       </li>
     );
   });
+};
+
+const onControlClick = (newPage, setCurrentPage, onPageChange) => {
+  // Change the page
+  setCurrentPage(newPage);
+
+  // Run custom callback function if it's been sent into the component
+  if (
+    typeof onPageChange !== "undefined" &&
+    typeof onPageChange === "function"
+  ) {
+    onPageChange(newPage);
+  }
 };
 
 const preventDefault = theEvent => {
@@ -168,7 +190,8 @@ const mapStateToProps = state => {
   return {
     currentPage: state.currentPage,
     itemsPerPage: state.itemsPerPage,
-    itemLength: state.items.length
+    itemLength: state.items.length,
+    onPageChange: state.onPageChange
   };
 };
 

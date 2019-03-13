@@ -27,8 +27,18 @@ const itemsPerPage = (itemsPerPage = null, action) => {
   }
 };
 
+const onPageChange = (onPageChange = null, action) => {
+  switch (action.type) {
+    case "SET_ON_PAGE_CHANGE":
+      return action.onPageChange;
+    default:
+      return onPageChange;
+  }
+};
+
 export default combineReducers({
   currentPage,
   items,
-  itemsPerPage
+  itemsPerPage,
+  onPageChange
 });

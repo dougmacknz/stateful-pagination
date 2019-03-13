@@ -59,9 +59,10 @@ There's a lot of pagination components out there for React. However I haven't se
 
 ### `<Pagination>`
 
-| Name           | Type     | Required | Description                                                       |
-| -------------- | -------- | :------: | ----------------------------------------------------------------- |
-| `itemsPerPage` | `number` |    Y     | The amount of parent elements that will be displayed on each page |
+| Name           | Type       | Required | Description                                                       |
+| -------------- | ---------- | :------: | ----------------------------------------------------------------- |
+| `itemsPerPage` | `number`   |    Y     | The amount of parent elements that will be displayed on each page |
+| `onPageChange` | `function` |          | Callback function to run anytime the current page changes         |
 
 ### `<PaginationItems>`
 
