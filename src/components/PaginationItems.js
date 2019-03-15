@@ -11,6 +11,7 @@ const PaginationItems = ({
   itemsPerPage,
   containerClassName,
   setItems,
+  pageCount,
   children
 }) => {
   React.useEffect(() => {
@@ -19,14 +20,30 @@ const PaginationItems = ({
 
   const offset = (currentPage - 1) * itemsPerPage;
   const total = offset + itemsPerPage;
-  const content = children.slice(offset, total);
+  let content;
+
+  if (pageCount) {
+    // lazy load mode: filter based on position prop of <PaginationItem>
+    content = children.filter(child => {
+      return child.props.position >= offset && child.props.position < total;
+    });
+  } else {
+    // normal mode: filter based on position in full list
+    content = children.slice(offset, total);
+  }
+
   return <div className={containerClassName}>{content}</div>;
+};
+
+PaginationItems.propTypes = {
+  containerClassName: PropTypes.string
 };
 
 const mapStateToProps = state => {
   return {
     currentPage: state.currentPage,
-    itemsPerPage: state.itemsPerPage
+    itemsPerPage: state.itemsPerPage,
+    pageCount: state.pageCount
   };
 };
 

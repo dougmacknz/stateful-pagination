@@ -1,78 +1,123 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { Pagination, PaginationControls, PaginationItems } from "../src";
+import {
+  Pagination,
+  PaginationControls,
+  PaginationItems,
+  PaginationItem
+} from "../src";
 
-storiesOf("Pagination", module).add("basic example", () => (
-  <>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossOrigin="anonymous"
-    />
+storiesOf("Pagination", module)
+  .addDecorator(storyFn => (
+    <>
+      {/* Include Bootstrap CSS for all examples */}
+      <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossOrigin="anonymous"
+      />
+      {storyFn()}
+    </>
+  ))
+  .add("basic example", () => (
+    <>
+      <Pagination itemsPerPage={5}>
+        <div style={{ maxWidth: "400px" }}>
+          <PaginationItems containerClassName="list-group">
+            {[...Array(100).keys()].map(index => (
+              <PaginationItem>
+                <div key={index} className="list-group-item">
+                  Item {index + 1}
+                </div>
+              </PaginationItem>
+            ))}
+          </PaginationItems>
+        </div>
+        <PaginationControls />
+      </Pagination>
+    </>
+  ))
+  .add("custom number of buttons at once", () => (
+    <>
+      <Pagination itemsPerPage={5}>
+        <div style={{ maxWidth: "400px" }}>
+          <PaginationItems containerClassName="list-group">
+            {[...Array(150).keys()].map(index => (
+              <PaginationItem>
+                <div key={index} className="list-group-item">
+                  Item {index + 1}
+                </div>
+              </PaginationItem>
+            ))}
+          </PaginationItems>
+        </div>
+        <PaginationControls maxButtons={10} />
+      </Pagination>
+    </>
+  ))
+  .add("callback on page change", () => (
+    <>
+      <Pagination
+        itemsPerPage={5}
+        onPageChange={newPage => console.log(`Changed to page ${newPage}`)}
+      >
+        <div style={{ maxWidth: "400px" }}>
+          <PaginationItems containerClassName="list-group">
+            {[...Array(100).keys()].map(index => (
+              <PaginationItem>
+                <div key={index} className="list-group-item">
+                  Item {index + 1}
+                </div>
+              </PaginationItem>
+            ))}
+          </PaginationItems>
+        </div>
+        <PaginationControls />
+      </Pagination>
+    </>
+  ))
+  .add("lazy load", () => {
+    const itemsAdded = [];
+    const items = [];
 
-    <Pagination itemsPerPage={5}>
-      <div style={{ maxWidth: "400px" }}>
-        <PaginationItems containerClassName="list-group">
-          {[...Array(100)].map((herp, index) => (
-            <div key={index} className="list-group-item">
-              Item {index + 1}
-            </div>
-          ))}
-        </PaginationItems>
-      </div>
-      <PaginationControls />
-    </Pagination>
-  </>
-));
+    // Load initial page of items
+    [...Array(5).keys()].map(index => {
+      items.push(
+        <PaginationItem key={index} position={index}>
+          <div key={index} className="list-group-item">
+            Item {index + 1}
+          </div>
+        </PaginationItem>
+      );
+      itemsAdded.push(index);
+    });
 
-storiesOf("Pagination", module).add("custom number of buttons at once", () => (
-  <>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossOrigin="anonymous"
-    />
+    const onPageChange = newPage => {
+      // API call for next set of 5 items
+      [...Array(5).keys()].map(i => {
+        const itemIndex = 5 * (newPage - 1) + i;
+        if (itemsAdded.indexOf(itemIndex) === -1) {
+          items.push(
+            <PaginationItem key={itemIndex} position={itemIndex}>
+              <div className="list-group-item">Item {itemIndex + 1}</div>
+            </PaginationItem>
+          );
+          itemsAdded.push(itemIndex);
+        }
+      });
+    };
 
-    <Pagination itemsPerPage={5}>
-      <div style={{ maxWidth: "400px" }}>
-        <PaginationItems containerClassName="list-group">
-          {[...Array(150)].map((herp, index) => (
-            <div key={index} className="list-group-item">
-              Item {index + 1}
-            </div>
-          ))}
-        </PaginationItems>
-      </div>
-      <PaginationControls maxButtons={10} />
-    </Pagination>
-  </>
-));
-
-storiesOf("Pagination", module).add("callback on page change", () => (
-  <>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossOrigin="anonymous"
-    />
-
-    <Pagination
-      itemsPerPage={5}
-      onPageChange={newPage => console.log(`Changed to page ${newPage}`)}
-    >
-      <div style={{ maxWidth: "400px" }}>
-        <PaginationItems containerClassName="list-group">
-          {[...Array(100)].map((herp, index) => (
-            <div key={index} className="list-group-item">
-              Item {index + 1}
-            </div>
-          ))}
-        </PaginationItems>
-      </div>
-      <PaginationControls />
-    </Pagination>
-  </>
-));
+    return (
+      <>
+        <Pagination itemsPerPage={5} onPageChange={onPageChange} pageCount={30}>
+          <div style={{ maxWidth: "400px" }}>
+            <PaginationItems containerClassName="list-group">
+              {items}
+            </PaginationItems>
+          </div>
+          <PaginationControls />
+        </Pagination>
+      </>
+    );
+  });

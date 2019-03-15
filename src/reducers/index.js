@@ -36,9 +36,19 @@ const onPageChange = (onPageChange = null, action) => {
   }
 };
 
+const pageCount = (pageCount = null, action) => {
+  switch (action.type) {
+    case "SET_PAGE_COUNT":
+      return action.pageCount;
+    default:
+      return pageCount;
+  }
+};
+
 export default combineReducers({
   currentPage,
   items,
   itemsPerPage,
-  onPageChange
+  onPageChange,
+  pageCount
 });

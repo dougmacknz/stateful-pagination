@@ -16,17 +16,21 @@ const PaginationControls = ({
   nextLabel,
   controlClassName,
   maxButtons,
-  onPageChange
+  onPageChange,
+  pageCount
 }) => {
-  const prevOffset = (currentPage - 1) * itemsPerPage;
-  const nextOffset = currentPage * itemsPerPage;
-  const prevDisabled = prevOffset <= 0;
-  const nextDisabled = nextOffset >= itemLength;
-  const pageCount = itemLength / itemsPerPage;
+  // If a specific page count hasn't been specified- calculate it based on the items inside PaginationItems
+  if (pageCount === null) {
+    pageCount = itemLength / itemsPerPage;
+  }
 
-  if (pageCount < 1) {
+  // No need to display pagination controls when there's just one page
+  if (pageCount <= 1) {
     return null;
   }
+
+  const prevDisabled = currentPage === 1;
+  const nextDisabled = currentPage === pageCount;
 
   return (
     <nav role="navigation" aria-label="Pagination Navigation">
@@ -191,7 +195,8 @@ const mapStateToProps = state => {
     currentPage: state.currentPage,
     itemsPerPage: state.itemsPerPage,
     itemLength: state.items.length,
-    onPageChange: state.onPageChange
+    onPageChange: state.onPageChange,
+    pageCount: state.pageCount
   };
 };
 
