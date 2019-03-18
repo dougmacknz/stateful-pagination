@@ -86,13 +86,14 @@ Container for content for a single item to be paginated.
 
 Buttons for the user to control which page they are viewing.
 
-| Name              | Type     | Required | Default     | Description                               |
-| ----------------- | -------- | :------: | ----------- | ----------------------------------------- |
-| `maxButtons`      | `number` |          | 5           | Maximum amount of buttons to show at once |
-| `prevLabel`       | `node`   |          | `Previous`  | Custom label for the 'previous' button    |
-| `nextLabel`       | `node`   |          | `Next`      | Custom label for the 'next' button        |
-| `liClassName`     | `string` |          | `page-item` | Custom class for the pagination links     |
-| `anchorClassName` | `string` |          | `page-link` | Custom class for the pagination links     |
+| Name              | Type     | Required | Default      | Description                               |
+| ----------------- | -------- | :------: | ------------ | ----------------------------------------- |
+| `maxButtons`      | `number` |          | 5            | Maximum amount of buttons to show at once |
+| `prevLabel`       | `node`   |          | `Previous`   | Custom label for the 'previous' button    |
+| `nextLabel`       | `node`   |          | `Next`       | Custom label for the 'next' button        |
+| `ulClassName`     | `string` |          | `pagination` | Custom class/es for `<ul>` element        |
+| `liClassName`     | `string` |          | `page-item`  | Custom class/es for `<li>` elements       |
+| `anchorClassName` | `string` |          | `page-link`  | Custom class/es for `<a>` elements        |
 
 ## Normal vs lazy load mode
 
@@ -109,6 +110,10 @@ This mode is suited for when your component will potentially be displaying large
 To enable lazy load mode- send a `pageCount` prop to the `<Pagination>` component, and add a `position` prop to each `<PaginationItem>`.
 
 See the [lazy load example on Storybook](https://dougmacknz.github.io/stateful-pagination/?path=/story/pagination--lazy-load) for an example of how you can use this mode.
+
+## Styling
+
+There is no CSS included with this plugin. By default- Bootstrap class names are applied to the Pagination controls. These class names can be changed with the `ulClassName`, `liClassName`, and `anchorClassName` props on the `<PaginationControls>` component.
 
 ## Credits
 

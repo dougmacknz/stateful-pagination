@@ -14,6 +14,7 @@ const PaginationControls = ({
   itemLength,
   prevLabel,
   nextLabel,
+  ulClassName,
   liClassName,
   anchorClassName,
   maxButtons,
@@ -35,7 +36,7 @@ const PaginationControls = ({
 
   return (
     <nav role="navigation" aria-label="Pagination Navigation">
-      <ul className="pagination">
+      <ul className={ulClassName}>
         <EndButton
           disabled={prevDisabled}
           targetPage={currentPage - 1}
@@ -77,6 +78,7 @@ const PaginationControls = ({
 PaginationControls.defaultProps = {
   prevLabel: "Previous",
   nextLabel: "Next",
+  ulClassName: "pagination",
   liClassName: "page-item",
   anchorClassName: "page-link",
   maxButtons: 5
@@ -85,6 +87,7 @@ PaginationControls.defaultProps = {
 PaginationControls.propTypes = {
   prevLabel: PropTypes.node,
   nextLabel: PropTypes.node,
+  ulClassName: PropTypes.string,
   liClassName: PropTypes.string,
   anchorClassName: PropTypes.string
 };
