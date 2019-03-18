@@ -86,12 +86,13 @@ Container for content for a single item to be paginated.
 
 Buttons for the user to control which page they are viewing.
 
-| Name               | Type     | Required | Default     | Description                               |
-| ------------------ | -------- | :------: | ----------- | ----------------------------------------- |
-| `maxButtons`       | `number` |          | 5           | Maximum amount of buttons to show at once |
-| `prevLabel`        | `node`   |          | `Previous`  | Custom label for the 'previous' button    |
-| `nextLabel`        | `node`   |          | `Next`      | Custom label for the 'next' button        |
-| `controlClassName` | `string` |          | `page-link` | Custom class for the pagination links     |
+| Name              | Type     | Required | Default     | Description                               |
+| ----------------- | -------- | :------: | ----------- | ----------------------------------------- |
+| `maxButtons`      | `number` |          | 5           | Maximum amount of buttons to show at once |
+| `prevLabel`       | `node`   |          | `Previous`  | Custom label for the 'previous' button    |
+| `nextLabel`       | `node`   |          | `Next`      | Custom label for the 'next' button        |
+| `liClassName`     | `string` |          | `page-item` | Custom class for the pagination links     |
+| `anchorClassName` | `string` |          | `page-link` | Custom class for the pagination links     |
 
 ## Normal vs lazy load mode
 

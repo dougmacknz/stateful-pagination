@@ -14,7 +14,8 @@ const PaginationControls = ({
   itemLength,
   prevLabel,
   nextLabel,
-  controlClassName,
+  liClassName,
+  anchorClassName,
   maxButtons,
   onPageChange,
   pageCount
@@ -38,7 +39,8 @@ const PaginationControls = ({
         <EndButton
           disabled={prevDisabled}
           targetPage={currentPage - 1}
-          controlClassName={controlClassName}
+          liClassName={liClassName}
+          anchorClassName={anchorClassName}
           onClick={() =>
             onControlClick(currentPage - 1, setCurrentPage, onPageChange)
           }
@@ -50,7 +52,8 @@ const PaginationControls = ({
           pageCount={pageCount}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
-          controlClassName={controlClassName}
+          liClassName={liClassName}
+          anchorClassName={anchorClassName}
           maxButtons={maxButtons}
           onPageChange={onPageChange}
         />
@@ -58,7 +61,8 @@ const PaginationControls = ({
         <EndButton
           disabled={nextDisabled}
           targetPage={currentPage + 1}
-          controlClassName={controlClassName}
+          liClassName={liClassName}
+          anchorClassName={anchorClassName}
           onClick={() =>
             onControlClick(currentPage + 1, setCurrentPage, onPageChange)
           }
@@ -73,14 +77,16 @@ const PaginationControls = ({
 PaginationControls.defaultProps = {
   prevLabel: "Previous",
   nextLabel: "Next",
-  controlClassName: "page-link",
+  liClassName: "page-item",
+  anchorClassName: "page-link",
   maxButtons: 5
 };
 
 PaginationControls.propTypes = {
   prevLabel: PropTypes.node,
   nextLabel: PropTypes.node,
-  controlClassName: PropTypes.string
+  liClassName: PropTypes.string,
+  anchorClassName: PropTypes.string
 };
 
 /**
@@ -90,14 +96,15 @@ const EndButton = ({
   disabled,
   targetPage,
   onClick,
-  controlClassName,
+  liClassName,
+  anchorClassName,
   children
 }) => {
   return (
-    <li className={classNames({ "page-item": true, disabled: disabled })}>
+    <li className={classNames({ [liClassName]: true, disabled: disabled })}>
       <a
         href="#"
-        className={controlClassName}
+        className={anchorClassName}
         onClick={preventDefault(() => {
           if (disabled) return;
           onClick();
@@ -118,7 +125,8 @@ const NumberedButtons = ({
   pageCount,
   currentPage,
   setCurrentPage,
-  controlClassName,
+  liClassName,
+  anchorClassName,
   maxButtons,
   onPageChange
 }) => {
@@ -150,13 +158,13 @@ const NumberedButtons = ({
       <li
         key={index}
         className={classNames({
-          "page-item": true,
+          [liClassName]: true,
           active: isSelectedPage
         })}
       >
         <a
           href="#"
-          className={controlClassName}
+          className={anchorClassName}
           onClick={preventDefault(() =>
             onControlClick(pageNum, setCurrentPage, onPageChange)
           )}
