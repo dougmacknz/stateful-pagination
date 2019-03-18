@@ -9,7 +9,6 @@ import { setItems } from "../actions";
 const PaginationItems = ({
   currentPage,
   itemsPerPage,
-  containerClassName,
   setItems,
   pageCount,
   children
@@ -32,7 +31,7 @@ const PaginationItems = ({
     content = children.slice(offset, total);
   }
 
-  return <div className={containerClassName}>{content}</div>;
+  return content;
 };
 
 PaginationItems.propTypes = {

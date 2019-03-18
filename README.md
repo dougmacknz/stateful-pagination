@@ -70,10 +70,6 @@ Container for the `<PaginationItems>` and `<PaginationControls>` components.
 
 A container for all the items to be paginated.
 
-| Name                 | Type     | Required | Description                         |
-| -------------------- | -------- | :------: | ----------------------------------- |
-| `containerClassName` | `string` |          | Custom class name for the container |
-
 ### `<PaginationItem>`
 
 Container for content for a single item to be paginated.

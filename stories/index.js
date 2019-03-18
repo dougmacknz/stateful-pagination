@@ -21,61 +21,55 @@ storiesOf("Pagination", module)
     </>
   ))
   .add("basic example", () => (
-    <>
-      <Pagination itemsPerPage={5}>
-        <div style={{ maxWidth: "400px" }}>
-          <PaginationItems containerClassName="list-group">
-            {[...Array(100).keys()].map(index => (
-              <PaginationItem>
-                <div key={index} className="list-group-item">
-                  Item {index + 1}
-                </div>
-              </PaginationItem>
-            ))}
-          </PaginationItems>
-        </div>
-        <PaginationControls />
-      </Pagination>
-    </>
+    <Pagination itemsPerPage={5}>
+      <div className="list-group" style={{ maxWidth: "400px" }}>
+        <PaginationItems>
+          {[...Array(100).keys()].map(index => (
+            <PaginationItem>
+              <div key={index} className="list-group-item">
+                Item {index + 1}
+              </div>
+            </PaginationItem>
+          ))}
+        </PaginationItems>
+      </div>
+      <PaginationControls />
+    </Pagination>
   ))
   .add("custom number of buttons at once", () => (
-    <>
-      <Pagination itemsPerPage={5}>
-        <div style={{ maxWidth: "400px" }}>
-          <PaginationItems containerClassName="list-group">
-            {[...Array(150).keys()].map(index => (
-              <PaginationItem>
-                <div key={index} className="list-group-item">
-                  Item {index + 1}
-                </div>
-              </PaginationItem>
-            ))}
-          </PaginationItems>
-        </div>
-        <PaginationControls maxButtons={10} />
-      </Pagination>
-    </>
+    <Pagination itemsPerPage={5}>
+      <div className="list-group" style={{ maxWidth: "400px" }}>
+        <PaginationItems>
+          {[...Array(150).keys()].map(index => (
+            <PaginationItem>
+              <div key={index} className="list-group-item">
+                Item {index + 1}
+              </div>
+            </PaginationItem>
+          ))}
+        </PaginationItems>
+      </div>
+      <PaginationControls maxButtons={10} />
+    </Pagination>
   ))
   .add("callback on page change", () => (
-    <>
-      <Pagination
-        itemsPerPage={5}
-        onPageChange={newPage => console.log(`Changed to page ${newPage}`)}
-      >
-        <div style={{ maxWidth: "400px" }}>
-          <PaginationItems containerClassName="list-group">
-            {[...Array(100).keys()].map(index => (
-              <PaginationItem>
-                <div key={index} className="list-group-item">
-                  Item {index + 1}
-                </div>
-              </PaginationItem>
-            ))}
-          </PaginationItems>
-        </div>
-        <PaginationControls />
-      </Pagination>
-    </>
+    <Pagination
+      itemsPerPage={5}
+      onPageChange={newPage => console.log(`Changed to page ${newPage}`)}
+    >
+      <div className="list-group" style={{ maxWidth: "400px" }}>
+        <PaginationItems>
+          {[...Array(100).keys()].map(index => (
+            <PaginationItem>
+              <div key={index} className="list-group-item">
+                Item {index + 1}
+              </div>
+            </PaginationItem>
+          ))}
+        </PaginationItems>
+      </div>
+      <PaginationControls />
+    </Pagination>
   ))
   .add("lazy load", () => {
     const itemsAdded = [];
@@ -109,15 +103,11 @@ storiesOf("Pagination", module)
     };
 
     return (
-      <>
-        <Pagination itemsPerPage={5} onPageChange={onPageChange} pageCount={30}>
-          <div style={{ maxWidth: "400px" }}>
-            <PaginationItems containerClassName="list-group">
-              {items}
-            </PaginationItems>
-          </div>
-          <PaginationControls />
-        </Pagination>
-      </>
+      <Pagination itemsPerPage={5} onPageChange={onPageChange} pageCount={30}>
+        <div className="list-group" style={{ maxWidth: "400px" }}>
+          <PaginationItems>{items}</PaginationItems>
+        </div>
+        <PaginationControls />
+      </Pagination>
     );
   });
