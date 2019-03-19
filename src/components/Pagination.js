@@ -1,16 +1,22 @@
 import * as React from "react";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
 import PropTypes from "prop-types";
 import rootReducer from "../reducers";
+import { StateProvider } from "../helpers/state";
 
 const Pagination = ({ children, itemsPerPage, onPageChange, pageCount }) => {
-  const store = createStore(rootReducer, {
+  const initialState = {
     itemsPerPage,
     onPageChange,
-    pageCount
-  });
-  return <Provider store={store}>{children}</Provider>;
+    pageCount,
+    currentPage: 1,
+    itemLength: null
+  };
+
+  return (
+    <StateProvider initialState={initialState} reducer={rootReducer}>
+      {children}
+    </StateProvider>
+  );
 };
 
 Pagination.propTypes = {

@@ -1,38 +1,46 @@
 import * as React from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { setCurrentPage } from "../actions";
+import { getState } from "../helpers/state";
 
 /**
  * Displays the pagination buttons
  */
 const PaginationControls = ({
-  currentPage,
-  setCurrentPage,
-  itemsPerPage,
-  itemLength,
   prevLabel,
   nextLabel,
   ulClassName,
   liClassName,
   anchorClassName,
-  maxButtons,
-  onPageChange,
-  pageCount
+  maxButtons
 }) => {
+  const [
+    { currentPage, itemsPerPage, itemLength, onPageChange, pageCount },
+    dispatch
+  ] = getState();
+
+  const setCurrentPage = page =>
+    dispatch({
+      type: "SET_CURRENT_PAGE",
+      page
+    });
+
   // If a specific page count hasn't been specified- calculate it based on the items inside PaginationItems
-  if (pageCount === null) {
-    pageCount = itemLength / itemsPerPage;
+  let calculatedPageCount;
+
+  if (pageCount) {
+    calculatedPageCount = pageCount;
+  } else {
+    calculatedPageCount = itemLength / itemsPerPage;
   }
 
   // No need to display pagination controls when there's just one page
-  if (pageCount <= 1) {
+  if (calculatedPageCount <= 1) {
     return null;
   }
 
   const prevDisabled = currentPage === 1;
-  const nextDisabled = currentPage === pageCount;
+  const nextDisabled = currentPage === calculatedPageCount;
 
   return (
     <nav role="navigation" aria-label="Pagination Navigation">
@@ -50,7 +58,7 @@ const PaginationControls = ({
         </EndButton>
 
         <NumberedButtons
-          pageCount={pageCount}
+          pageCount={calculatedPageCount}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
           liClassName={liClassName}
@@ -201,17 +209,4 @@ const preventDefault = theEvent => {
   };
 };
 
-const mapStateToProps = state => {
-  return {
-    currentPage: state.currentPage,
-    itemsPerPage: state.itemsPerPage,
-    itemLength: state.items.length,
-    onPageChange: state.onPageChange,
-    pageCount: state.pageCount
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  { setCurrentPage }
-)(PaginationControls);
+export default PaginationControls;

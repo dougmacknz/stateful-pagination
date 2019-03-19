@@ -1,6 +1,4 @@
-import { combineReducers } from "redux";
-
-const currentPage = (currentPage = 1, action) => {
+const currentPageReducer = (currentPage = 1, action) => {
   switch (action.type) {
     case "SET_CURRENT_PAGE":
       return action.page;
@@ -9,16 +7,16 @@ const currentPage = (currentPage = 1, action) => {
   }
 };
 
-const items = (items = [], action) => {
+const itemLengthReducer = (itemLength, action) => {
   switch (action.type) {
-    case "SET_ITEMS":
-      return action.items;
+    case "SET_ITEM_LENGTH":
+      return action.itemLength;
     default:
-      return items;
+      return itemLength;
   }
 };
 
-const itemsPerPage = (itemsPerPage = null, action) => {
+const itemsPerPageReducer = (itemsPerPage, action) => {
   switch (action.type) {
     case "SET_ITEMS_PER_PAGE":
       return action.amount;
@@ -27,7 +25,7 @@ const itemsPerPage = (itemsPerPage = null, action) => {
   }
 };
 
-const onPageChange = (onPageChange = null, action) => {
+const onPageChangeReducer = (onPageChange, action) => {
   switch (action.type) {
     case "SET_ON_PAGE_CHANGE":
       return action.onPageChange;
@@ -36,7 +34,7 @@ const onPageChange = (onPageChange = null, action) => {
   }
 };
 
-const pageCount = (pageCount = null, action) => {
+const pageCountReducer = (pageCount, action) => {
   switch (action.type) {
     case "SET_PAGE_COUNT":
       return action.pageCount;
@@ -45,10 +43,15 @@ const pageCount = (pageCount = null, action) => {
   }
 };
 
-export default combineReducers({
-  currentPage,
-  items,
-  itemsPerPage,
-  onPageChange,
-  pageCount
-});
+export default (
+  { currentPage, itemLength, itemsPerPage, onPageChange, pageCount },
+  action
+) => {
+  return {
+    currentPage: currentPageReducer(currentPage, action),
+    itemLength: itemLengthReducer(itemLength, action),
+    itemsPerPage: itemsPerPageReducer(itemsPerPage, action),
+    onPageChange: onPageChangeReducer(onPageChange, action),
+    pageCount: pageCountReducer(pageCount, action)
+  };
+};

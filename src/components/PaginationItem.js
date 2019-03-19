@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const PaginationItem = ({ position, children }) => {
+const PaginationItem = ({ children }) => {
   return children;
 };
 
