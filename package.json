@@ -1,6 +1,6 @@
 {
   "name": "stateful-pagination",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "React pagination component with built in management of items.",
   "main": "index.js",
   "scripts": {
