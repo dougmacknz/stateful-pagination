@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import rootReducer from "../reducers";
 import { StateProvider } from "../helpers/state";
 
-const Pagination = ({ children, itemsPerPage, onPageChange, pageCount }) => {
+const Pagination = ({ itemsPerPage, onPageChange, pageCount, children }) => {
   const initialState = {
     itemsPerPage,
     onPageChange,
