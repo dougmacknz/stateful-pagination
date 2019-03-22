@@ -25,4 +25,8 @@ Pagination.propTypes = {
   pageCount: PropTypes.number
 };
 
+Pagination.defaultProps = {
+  itemsPerPage: 10
+};
+
 export default Pagination;

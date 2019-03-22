@@ -60,11 +60,11 @@ There's a lot of pagination components out there for React. However I haven't se
 
 Container for the `<PaginationItems>` and `<PaginationControls>` components.
 
-| Name           | Type       | Required | Default                    | Description                                                                               |
-| -------------- | ---------- | :------: | -------------------------- | ----------------------------------------------------------------------------------------- |
-| `itemsPerPage` | `number`   |    Y     |                            | The amount of parent elements that will be displayed on each page                         |
-| `onPageChange` | `function` |          |                            | Callback function to run anytime the current page changes                                 |
-| `pageCount`    | `number`   |          | (calculated automatically) | Overrides the calculated page count. Enables [lazy load mode](#normal-vs-lazy-load-mode). |
+| Name           | Type       | Default                      | Description                                                                               |
+| -------------- | ---------- | ---------------------------- | ----------------------------------------------------------------------------------------- |
+| `itemsPerPage` | `number`   | 10                           | The amount of parent elements that will be displayed on each page                         |
+| `onPageChange` | `function` |                              | Callback function to run anytime the current page changes                                 |
+| `pageCount`    | `number`   | _(calculated automatically)_ | Overrides the calculated page count. Enables [lazy load mode](#normal-vs-lazy-load-mode). |
 
 ### `<PaginationItems>`
 
@@ -74,22 +74,22 @@ A container for all the items to be paginated.
 
 Container for content for a single item to be paginated.
 
-| Name       | Type     | Required | Default | Description                                                            |
-| ---------- | -------- | :------: | ------- | ---------------------------------------------------------------------- |
-| `position` | `number` |          |         | **Required on lazy load mode.** Position of the item in the full list. |
+| Name       | Type     | Default | Description                                                            |
+| ---------- | -------- | ------- | ---------------------------------------------------------------------- |
+| `position` | `number` |         | **Required on lazy load mode.** Position of the item in the full list. |
 
 ### `<PaginationControls>`
 
 Buttons for the user to control which page they are viewing.
 
-| Name              | Type     | Required | Default      | Description                               |
-| ----------------- | -------- | :------: | ------------ | ----------------------------------------- |
-| `maxButtons`      | `number` |          | 5            | Maximum amount of buttons to show at once |
-| `prevLabel`       | `node`   |          | `Previous`   | Custom label for the 'previous' button    |
-| `nextLabel`       | `node`   |          | `Next`       | Custom label for the 'next' button        |
-| `ulClassName`     | `string` |          | `pagination` | Custom class/es for `<ul>` element        |
-| `liClassName`     | `string` |          | `page-item`  | Custom class/es for `<li>` elements       |
-| `anchorClassName` | `string` |          | `page-link`  | Custom class/es for `<a>` elements        |
+| Name              | Type     | Default      | Description                               |
+| ----------------- | -------- | ------------ | ----------------------------------------- |
+| `maxButtons`      | `number` | 5            | Maximum amount of buttons to show at once |
+| `prevLabel`       | `node`   | `Previous`   | Custom label for the 'previous' button    |
+| `nextLabel`       | `node`   | `Next`       | Custom label for the 'next' button        |
+| `ulClassName`     | `string` | `pagination` | Custom class/es for `<ul>` element        |
+| `liClassName`     | `string` | `page-item`  | Custom class/es for `<li>` elements       |
+| `anchorClassName` | `string` | `page-link`  | Custom class/es for `<a>` elements        |
 
 ## Normal vs lazy load mode
 

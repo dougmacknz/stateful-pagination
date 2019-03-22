@@ -21,7 +21,7 @@ storiesOf("Pagination", module)
     </>
   ))
   .add("basic example", () => (
-    <Pagination itemsPerPage={5}>
+    <Pagination>
       <div className="list-group" style={{ maxWidth: "400px" }}>
         <PaginationItems>
           {[...Array(100).keys()].map(index => (
