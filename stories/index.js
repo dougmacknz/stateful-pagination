@@ -17,12 +17,15 @@ storiesOf("Pagination", module)
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossOrigin="anonymous"
       />
-      {storyFn()}
+      <div style={{ margin: "20px 0 0 20px" }}>{storyFn()}</div>
     </>
   ))
   .add("basic example", () => (
-    <Pagination>
-      <div className="list-group" style={{ maxWidth: "400px" }}>
+    <Pagination itemsPerPage={5}>
+      <div
+        className="list-group"
+        style={{ maxWidth: "400px", marginBottom: "20px" }}
+      >
         <PaginationItems>
           {[...Array(100).keys()].map(index => (
             <PaginationItem>
@@ -38,7 +41,10 @@ storiesOf("Pagination", module)
   ))
   .add("custom number of buttons at once", () => (
     <Pagination itemsPerPage={5}>
-      <div className="list-group" style={{ maxWidth: "400px" }}>
+      <div
+        className="list-group"
+        style={{ maxWidth: "400px", marginBottom: "20px" }}
+      >
         <PaginationItems>
           {[...Array(150).keys()].map(index => (
             <PaginationItem>
@@ -57,7 +63,10 @@ storiesOf("Pagination", module)
       itemsPerPage={5}
       onPageChange={newPage => console.log(`Changed to page ${newPage}`)}
     >
-      <div className="list-group" style={{ maxWidth: "400px" }}>
+      <div
+        className="list-group"
+        style={{ maxWidth: "400px", marginBottom: "20px" }}
+      >
         <PaginationItems>
           {[...Array(100).keys()].map(index => (
             <PaginationItem>
@@ -104,7 +113,10 @@ storiesOf("Pagination", module)
 
     return (
       <Pagination itemsPerPage={5} onPageChange={onPageChange} pageCount={30}>
-        <div className="list-group" style={{ maxWidth: "400px" }}>
+        <div
+          className="list-group"
+          style={{ maxWidth: "400px", marginBottom: "20px" }}
+        >
           <PaginationItems>{items}</PaginationItems>
         </div>
         <PaginationControls />
