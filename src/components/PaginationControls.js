@@ -31,7 +31,7 @@ const PaginationControls = ({
   if (pageCount) {
     calculatedPageCount = pageCount;
   } else {
-    calculatedPageCount = itemLength / itemsPerPage;
+    calculatedPageCount = Math.ceil(itemLength / itemsPerPage);
   }
 
   // No need to display pagination controls when there's just one page
