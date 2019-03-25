@@ -1,11 +1,13 @@
 {
   "name": "stateful-pagination",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "React pagination component with built in state management of pages.",
   "main": "lib/index.js",
   "scripts": {
     "build": "webpack",
-    "deploy-storybook": "storybook-to-ghpages",
+    "deploy:npm": "npm run build; npm publish",
+    "deploy:storybook": "storybook-to-ghpages",
+    "deploy": "npm run deploy:npm && npm run deploy:storybook",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -32,9 +34,11 @@
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.4.2",
     "@babel/preset-react": "^7.0.0",
+    "@storybook/addon-knobs": "^5.0.3",
     "@storybook/react": "^5.0.0",
     "@storybook/storybook-deployer": "^2.8.1",
     "babel-loader": "^8.0.5",
+    "storybook-readme": "^5.0.1",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
   },

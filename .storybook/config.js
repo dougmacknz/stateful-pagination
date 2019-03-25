@@ -1,8 +1,16 @@
-import { configure } from "@storybook/react";
+import { configure, addDecorator, addParameters } from "@storybook/react";
+import { addReadme } from "storybook-readme";
 
 function loadStories() {
   require("../stories/index.js");
-  // You can require as many stories as you need.
 }
 
 configure(loadStories, module);
+
+addDecorator(addReadme);
+
+addParameters({
+  options: {
+    panelPosition: "right"
+  }
+});

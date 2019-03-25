@@ -8,6 +8,7 @@ import { getState } from "../helpers/state";
 const PaginationItems = ({ children }) => {
   const [{ currentPage, itemsPerPage, pageCount }, dispatch] = getState();
 
+  // Store the amount of items in the global store
   React.useEffect(() => {
     dispatch({
       type: "SET_ITEM_LENGTH",
