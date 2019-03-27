@@ -50,7 +50,7 @@ import {
 </Pagination>
 ```
 
-## Why another pagination component?
+## Motivation
 
 There's a lot of pagination components out there for React. However I haven't seen one that has built in state management of pages + some other common implementation requirements like window state management. This component is designed to take more of the logic out of the implementation and into the plugin.
 
